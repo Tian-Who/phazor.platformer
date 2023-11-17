@@ -1,3 +1,4 @@
+//@ts-check
 import "./style.css";
 import Phaser from "phaser";
 
@@ -22,55 +23,54 @@ class MainScene extends Phaser.Scene {
   preload() {
     this.load.atlas("robot", "robot.png", "robot.json");
 
-    this.load.image("marble", "tilesets/marble.png")
+    this.load.image("marble", "tilesets/marble.png");
     this.load.image("rock", "tilesets/rock.png");
     this.load.image("sand", "tilesets/sand.png");
     this.load.image("stone", "tilesets/stone.png");
 
-    this.load.tilemapTiledJSON("map", "tilesets/map.json")
+    this.load.tilemapTiledJSON("map", "tilesets/map.json");
   }
 
   create() {
     const { height, width } = this.scale;
 
-    this.map = this.make.tilemap({key: "map"});
+    this.map = this.make.tilemap({ key: "map" });
     this.keyBinds;
     const marbleTiles = this.map.addTilesetImage("marble", "marble");
     const rockTiles = this.map.addTilesetImage("rock", "rock");
     const sandTiles = this.map.addTilesetImage("sand", "sand");
     const stoneTiles = this.map.addTilesetImage("stone", "stone");
 
-   const BackgroundLayer = this.map.createLayer("Background",
-    [marbleTiles, rockTiles, sandTiles, stoneTiles],
-     0, 0
-     );
-   const platformLayer = this.map.createLayer("Platforms",
-    [marbleTiles, rockTiles, sandTiles, stoneTiles],
-     0, 
-     0
-     );
+    const BackgroundLayer = this.map.createLayer(
+      "Background",
+      [marbleTiles, rockTiles, sandTiles, stoneTiles],
+      0,
+      0
+    );
+    const platformLayer = this.map.createLayer(
+      "Platforms",
+      [marbleTiles, rockTiles, sandTiles, stoneTiles],
+      0,
+      0
+    );
 
+    platformLayer.setCollisionByProperty({ collides: true });
+    console.log("platformLayer", platformLayer)
 
-
-    platformLayer.setCollisionByProperty({collides: true});
-
-
-
-
-    this.player = this.physics.add.sprite(width / 2,
-     height / 2, 
-     "robot",
-      "character_robot_idle.png");
+    this.player = this.physics.add.sprite(
+      width / 2,
+      height / 2,
+      "robot",
+      "character_robot_idle.png"
+    );
 
     this.physics.add.collider(this.player, platformLayer);
-    this.player.setCollideWorldBounds(true)
-    .setBounce(.2)
-    .setSize(TILE_SIZE * 2, TILE_SIZE * 4.5)
-    .setScale(.5)
-    .setOffset(TILE_SIZE * 1.7, TILE_SIZE * 2.6);
-    
-
-
+    this.player
+      .setCollideWorldBounds(true)
+      .setBounce(0.2)
+      .setSize(TILE_SIZE * 2, TILE_SIZE * 4.5)
+      .setScale(0.5)
+      .setOffset(TILE_SIZE * 1.7, TILE_SIZE * 2.6);
 
     this.player.anims.create({
       key: "run",
@@ -80,7 +80,7 @@ class MainScene extends Phaser.Scene {
         prefix: "character_robot_run",
         suffix: ".png",
       }),
-      
+
       frameRate: 10,
       repeat: -1,
     });
@@ -101,18 +101,18 @@ class MainScene extends Phaser.Scene {
     this.player.play("walk");
 
     this.player.anims.create({
-			key: PLAYER_ANIMS.idle,
-			frames: [{ key: "robot", frame: "character_robot_idle.png" }],
-		});
-  
+      key: PLAYER_ANIMS.idle,
+      frames: [{ key: "robot", frame: "character_robot_idle.png" }],
+    });
+
     this.player.anims.create({
-			key: PLAYER_ANIMS.jump,
-			frames: [{ key: "robot", frame: "character_robot_jump.png" }],
-		});
+      key: PLAYER_ANIMS.jump,
+      frames: [{ key: "robot", frame: "character_robot_jump.png" }],
+    });
     this.player.anims.create({
-			key: PLAYER_ANIMS.fall,
-			frames: [{ key: "robot", frame: "character_robot_fall.png" }],
-		});
+      key: PLAYER_ANIMS.fall,
+      frames: [{ key: "robot", frame: "character_robot_fall.png" }],
+    });
     // this.player.play("idle");
 
     this.keyBinds = this.input.keyboard.addKeys({
@@ -129,38 +129,44 @@ class MainScene extends Phaser.Scene {
   update() {
     if (this.keyBinds.left.isDown || this.keyBinds.leftArrow.isDown) {
       this.player.setVelocityX(-150);
-    } else   if (this.keyBinds.right.isDown || this.keyBinds.rightArrow.isDown) {
+    } else if (this.keyBinds.right.isDown || this.keyBinds.rightArrow.isDown) {
       this.player.setVelocityX(150);
     } else {
       this.player.setVelocityX(0);
     }
-  
-  if ((this.keyBinds.jump.isDown || this.keyBinds.upArrow.isDown || this.keyBinds.up.isDown) && this.player.body.onFloor()) {
-    this.player.setVelocityY(-150);
-  } 
 
-  // let x = this.player.body.velocity.x
-  // let y = this.player.body.velocity.y
-
-  let {x, y}= this.player.body.velocity;
-
-  this.player.flipX = x < 0;
-  console.log(x)
-  if(this.player.body.onFloor()){
-    if(x === 0){
-      this.player.play(PLAYER_ANIMS.idle)
-    }else {
-      this.player.play(PLAYER_ANIMS.run, true)
+    if (
+      (this.keyBinds.jump.isDown ||
+        this.keyBinds.upArrow.isDown ||
+        this.keyBinds.up.isDown) &&
+      this.player.body.onFloor()
+    ) {
+      this.player.setVelocityY(-150);
     }
-  } else{
-    if(y < 0){
-      this.player.play(PLAYER_ANIMS.jump, true)
+
+    // let x = this.player.body.velocity.x
+    // let y = this.player.body.velocity.y
+
+    let { x, y } = this.player.body.velocity;
+
+    this.player.flipX = x < 0;
+    console.log(x);
+    if (this.player.body.onFloor()) {
+      if (x === 0) {
+        this.player.play(PLAYER_ANIMS.idle);
+      } else {
+        this.player.play(PLAYER_ANIMS.run, true);
+      }
     } else {
-      if(y > 0){
-        this.player.play(PLAYER_ANIMS.fall, true)
-    }}
+      if (y < 0) {
+        this.player.play(PLAYER_ANIMS.jump, true);
+      } else {
+        if (y > 0) {
+          this.player.play(PLAYER_ANIMS.fall, true);
+        }
+      }
+    }
   }
-}
 }
 
 /**@type {Phaser.Types.Core.GameConfig} */
@@ -173,7 +179,7 @@ const config = {
     default: "arcade",
     arcade: {
       gravity: { y: 300 },
-      debug:true,
+      debug: true,
     },
   },
 };

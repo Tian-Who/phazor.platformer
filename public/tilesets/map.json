@@ -1716,7 +1716,7 @@
                         {
                          "name":"colllides",
                          "type":"bool",
-                         "value":false
+                         "value":true
                         }]
                 }, 
                 {
@@ -1725,7 +1725,7 @@
                         {
                          "name":"colllides",
                          "type":"bool",
-                         "value":false
+                         "value":true
                         }]
                 }, 
                 {
