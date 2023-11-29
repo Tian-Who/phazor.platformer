@@ -1,4 +1,4 @@
-//@ts-check
+
 import "./style.css";
 import Phaser from "phaser";
 
@@ -27,7 +27,7 @@ class MainScene extends Phaser.Scene {
     this.load.image("rock", "tilesets/rock.png");
     this.load.image("sand", "tilesets/sand.png");
     this.load.image("stone", "tilesets/stone.png");
-
+    this.load.image("coin", "coin.png");
     this.load.tilemapTiledJSON("map", "tilesets/map.json");
   }
 
@@ -54,7 +54,23 @@ class MainScene extends Phaser.Scene {
       0
     );
 
-    platformLayer.setCollisionByProperty({ collides: true });
+    platformLayer.setCollisionByProperty({ colllides: true });
+    this.coins = this.physics.add.group({
+			key: "coin",
+			quantity: 12,
+			setXY: { x: 18 * 4, y: 0, stepX: 18 * 3 },
+			setScale: { x: 0.25, y: 0.25 },
+      
+		});
+    this.coins.children.iterate((coin) => {
+      coin
+      .setCircle(40)
+      .setCollideWorldBounds(true)
+      .setBounce(Phaser.Math.FloatBetween(.4, .8))
+      .setVelocityX(Phaser.Math.FloatBetween(-10, 10))
+    })
+    console.log(this.coins.quantity)
+    if(this.coins.quantity === 0){this.coins.quantity = 12 }
     console.log("platformLayer", platformLayer)
 
     this.player = this.physics.add.sprite(
@@ -65,6 +81,17 @@ class MainScene extends Phaser.Scene {
     );
 
     this.physics.add.collider(this.player, platformLayer);
+    
+    this.physics.add.collider(this.coins, platformLayer);
+    this.physics.add.collider(this.coins, this.coins);
+    this.physics.add.overlap(
+      this.player,
+      this.coins,
+      this.collectCoin,
+      undefined,
+      this
+    )
+
     this.player
       .setCollideWorldBounds(true)
       .setBounce(0.2)
@@ -141,7 +168,7 @@ class MainScene extends Phaser.Scene {
         this.keyBinds.up.isDown) &&
       this.player.body.onFloor()
     ) {
-      this.player.setVelocityY(-150);
+      this.player.setVelocityY(-300);
     }
 
     // let x = this.player.body.velocity.x
@@ -167,7 +194,13 @@ class MainScene extends Phaser.Scene {
       }
     }
   }
+  collectCoin(player, coin) {
+    coin.disableBody(true, true);
+  
+  }
+  
 }
+
 
 /**@type {Phaser.Types.Core.GameConfig} */
 const config = {
