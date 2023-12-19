@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="44" height="33" tilewidth="18" tileheight="18" infinite="0" nextlayerid="4" nextobjectid="1">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="44" height="33" tilewidth="18" tileheight="18" infinite="0" nextlayerid="5" nextobjectid="12">
  <editorsettings>
   <export target="map.json" format="json"/>
  </editorsettings>
@@ -1769,4 +1769,15 @@
 190,191,191,191,191,192,235,210,217,191,191,191,192,217,191,192,199,227,201,190,191,191,191,191,192,199,200,201,208,210,217,191,191,191,191,191,191,191,191,191,191,192,208,237
 </data>
  </layer>
+ <objectgroup id="4" name="Objects">
+  <object id="1" x="80.6667" y="549.667"/>
+  <object id="2" name="Player-spawn" x="80.6667" y="550.333"/>
+  <object id="4" name="enemy-spawn" x="28" y="28"/>
+  <object id="6" name="enemy-spawn" x="689.333" y="302.667"/>
+  <object id="7" name="enemy-spawn" x="552" y="50.6667"/>
+  <object id="8" name="enemy-spawn" x="436" y="502.667"/>
+  <object id="9" name="enemy-spawn" x="257.333" y="280"/>
+  <object id="10" name="enemy-spawn" x="46.6667" y="369.333"/>
+  <object id="11" name="enemy-spawn" x="258.667" y="16"/>
+ </objectgroup>
 </map>

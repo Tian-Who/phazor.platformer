@@ -1,0 +1,44 @@
+{"frames": [
+
+{
+	"filename": "hydrogen-idle1.png",
+	"frame": {"x":0,"y":0,"w":210,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":190},
+	"sourceSize": {"w":210,"h":190}
+},
+{
+	"filename": "hydrogen-idle2.png",
+	"frame": {"x":210,"y":0,"w":210,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":190},
+	"sourceSize": {"w":210,"h":190}
+},
+{
+	"filename": "hydrogen-walk1.png",
+	"frame": {"x":420,"y":0,"w":210,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":190},
+	"sourceSize": {"w":210,"h":190}
+},
+{
+	"filename": "hydrogen-walk2.png",
+	"frame": {"x":630,"y":0,"w":210,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":190},
+	"sourceSize": {"w":210,"h":190}
+}],
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "hydrogen.png",
+	"format": "RGBA8888",
+	"size": {"w":840,"h":190},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:da0084eacb62c4220db74034fe7aeee6:6499ba03ef5f3868184ea91ad92e3b4e:82e8bdd82e81e7b75ba6f59f5152d158$"
+}
+}

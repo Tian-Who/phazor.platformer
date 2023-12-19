@@ -1,0 +1,44 @@
+{"frames": [
+
+{
+	"filename": "atom idle 1.png",
+	"frame": {"x":0,"y":0,"w":210,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":190},
+	"sourceSize": {"w":210,"h":190}
+},
+{
+	"filename": "atom idle 2.png",
+	"frame": {"x":210,"y":0,"w":210,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":190},
+	"sourceSize": {"w":210,"h":190}
+},
+{
+	"filename": "atom io s1.png",
+	"frame": {"x":420,"y":0,"w":210,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":190},
+	"sourceSize": {"w":210,"h":190}
+},
+{
+	"filename": "atom io s2.png",
+	"frame": {"x":630,"y":0,"w":210,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":190},
+	"sourceSize": {"w":210,"h":190}
+}],
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "atom.png",
+	"format": "RGBA8888",
+	"size": {"w":840,"h":190},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:b621af3c10791239f4596236ccf08de9:4b706689f4254ae1ddf43241fb101b79:a0d3c1ea50918b6644bf84ec15fe8a96$"
+}
+}
