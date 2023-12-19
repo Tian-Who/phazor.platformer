@@ -105,7 +105,7 @@ let playerSpawn = {
     platformLayer.setCollisionByProperty({ colllides: true });
     this.coins = this.physics.add.group({
       key: "coin",
-      quantity: 2000,
+      quantity: 200,
       setXY: { x: 18 * 4, y: 18 * 4, stepX: 18 * 2, stepY: 18 * 2 },
       setScale: { x: .03, y: 0.03 },
       
@@ -123,7 +123,7 @@ let playerSpawn = {
     platformLayer.setCollisionByProperty({ colllides: true });
     this.mCoins = this.physics.add.group({
       key: "mCoin",
-      quantity: 3000,
+      quantity: 200,
       setXY: { x: 18 * 4, y: 18 * 4, stepX: 18 * 2, stepY: 18 * 2 },
       setScale: { x: .03, y: 0.03 },
       
