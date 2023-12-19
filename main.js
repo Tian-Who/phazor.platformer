@@ -105,7 +105,7 @@ let playerSpawn = {
     platformLayer.setCollisionByProperty({ colllides: true });
     this.coins = this.physics.add.group({
       key: "coin",
-      quantity: 200,
+      quantity: 2000,
       setXY: { x: 18 * 4, y: 18 * 4, stepX: 18 * 2, stepY: 18 * 2 },
       setScale: { x: .03, y: 0.03 },
       
@@ -123,7 +123,7 @@ let playerSpawn = {
     platformLayer.setCollisionByProperty({ colllides: true });
     this.mCoins = this.physics.add.group({
       key: "mCoin",
-      quantity: 20,
+      quantity: 3000,
       setXY: { x: 18 * 4, y: 18 * 4, stepX: 18 * 2, stepY: 18 * 2 },
       setScale: { x: .03, y: 0.03 },
       
@@ -188,6 +188,7 @@ let playerSpawn = {
     this.hydrogen = this.physics.add.sprite(
       playerSpawn.x,
       playerSpawn.y,
+      
       "hydrogen",
       "hydrogen-idle1.png"
     );
@@ -292,6 +293,7 @@ let playerSpawn = {
     this.hydrogen
     .setCollideWorldBounds(true)
     .setBounce(0.2)
+    
     // .setSize(TILE_SIZE * 1, TILE_SIZE * 1)
     .setScale(0.25)
     .setCircle(90)
@@ -777,6 +779,8 @@ let playerSpawn = {
     if(this.nutron > 118){
       this.nutron = 118
     }
+    if(this.bond === 'Hydroxide' )
+    {this.bond = 'none'}
     this.makeBondHydroxide
     this.checkElement();
     console.log(this.nutron, this.elment,this.bond, "collect");
@@ -792,7 +796,8 @@ let playerSpawn = {
     if(this.nutron > 118){
       this.nutron = 118
     }
-    this.makeBondHydroxide
+    if(this.bond === 'Hydroxide' )
+    {this.bond = 'none'}
     this.checkElement();
     console.log(this.nutron, this.elment, this.bond, "collect");
 
@@ -802,7 +807,7 @@ let playerSpawn = {
     this.hydrogen.disableBody(true, true);
     if(this.elment === 'Oxygen'){
       this.bond = 'Hydroxide', this.hydrogen.disableBody(true, true)}
-      else{ this.bond = 'none'}
+      else{ this.bond = 'none', this.hydrogen.disableBody(false, false)}
 
   
 
