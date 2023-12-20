@@ -13,6 +13,35 @@ const PLAYER_ANIMS = {
   fall: "fall",
 };
 
+
+class UiScene extends Phaser.Scene {
+	constructor() {
+		super("ui-scene");
+
+		this.scoreText;
+	}
+
+	preload() {
+		this.load.image("hydroxideIMG", "hydroxide.png");
+	}
+
+	create() {
+		let coin = this.add.image(29, 32, "hydroxideIMG");
+		coin.setScale(0.07);
+
+		this.scoreText = this.add.text(60, 10, "0", {
+			color: "#000",
+			fontSize: 40,
+			fontFamily: "fantasy, arial, sans-serif",
+		});
+
+		events.addListener(COIN_COLLECTED_EVENT, this.handleCoinCollected, this);
+	}
+
+	handleCoinCollected(elment) {
+		this.scoreText.setText(elment);
+	}
+}
 class MainScene extends Phaser.Scene {
   constructor() {
     super("main-scene");
@@ -27,12 +56,18 @@ class MainScene extends Phaser.Scene {
     this.coinNoice;
     this.powerUpNoice;
   }
+  init() {
+		this.scene.launch("ui-scene");
+		this.score = 0;
+	}
+
 
   preload() {
     this.load.atlas("robot", "robot.png", "robot.json");
     this.load.atlas("atom guy", "atom.png", "atom.json");
     this.load.atlas("hydrogen", "hydrogen.png", "atom.json");
     this.load.image("marble", "tilesets/marble.png");
+    this.load.image("hydroxideIMG", "hydroxide.png");
     this.load.image("rock", "tilesets/rock.png");
     this.load.image("sand", "tilesets/sand.png");
     this.load.image("stone", "tilesets/stone.png");
@@ -844,7 +879,7 @@ const config = {
   type: Phaser.WEBGL,
   width: window.innerWidth,
   height: window.innerHeight,
-  scene: [MainScene],
+  scene: [MainScene, UiScene],
   physics: {
     default: "arcade",
     arcade: {
